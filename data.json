@@ -1,0 +1,508 @@
+{
+  "universities": [
+
+    {
+      "name": "USTHB",
+      "specialties": [
+
+        {
+          "degree": "Licence",
+          "major": "Computer Science",
+          "semesters": [
+            {
+              "name": "S1",
+              "courses": [
+                {"name":"Mathematics I","coef":4},
+                {"name":"Physics I","coef":3},
+                {"name":"Algorithms I","coef":4},
+                {"name":"Programming I","coef":4},
+                {"name":"Computer Architecture","coef":3},
+                {"name":"English I","coef":1}
+              ]
+            },
+            {
+              "name": "S2",
+              "courses": [
+                {"name":"Mathematics II","coef":4},
+                {"name":"Data Structures","coef":4},
+                {"name":"Programming II","coef":4},
+                {"name":"Operating Systems I","coef":3},
+                {"name":"Databases I","coef":3},
+                {"name":"English II","coef":1}
+              ]
+            },
+            {
+              "name": "S3",
+              "courses": [
+                {"name":"Algorithms II","coef":4},
+                {"name":"Databases II","coef":4},
+                {"name":"OS II","coef":3},
+                {"name":"Computer Networks I","coef":3},
+                {"name":"Logic & Sets","coef":2}
+              ]
+            },
+            {
+              "name": "S4",
+              "courses": [
+                {"name":"Software Engineering","coef":4},
+                {"name":"Computer Networks II","coef":3},
+                {"name":"Web Programming","coef":3},
+                {"name":"Statistics","coef":2},
+                {"name":"English III","coef":1}
+              ]
+            },
+            {
+              "name": "S5",
+              "courses": [
+                {"name":"Distributed Systems","coef":4},
+                {"name":"Information Security","coef":3},
+                {"name":"Artificial Intelligence I","coef":3},
+                {"name":"Project Practice","coef":2}
+              ]
+            },
+            {
+              "name": "S6",
+              "courses": [
+                {"name":"Machine Learning","coef":4},
+                {"name":"Cloud Computing","coef":3},
+                {"name":"Final Year Project","coef":5}
+              ]
+            }
+          ]
+        },
+
+        {
+          "degree": "Master",
+          "major": "Computer Science",
+          "semesters": [
+            {
+              "name": "M1-S1",
+              "courses": [
+                {"name":"Advanced Algorithms","coef":4},
+                {"name":"Distributed Algorithms","coef":3},
+                {"name":"Software Architecture","coef":3},
+                {"name":"Research Methods","coef":2}
+              ]
+            },
+            {
+              "name": "M1-S2",
+              "courses": [
+                {"name":"Machine Learning Advanced","coef":4},
+                {"name":"Secure Systems","coef":3},
+                {"name":"Database Systems Advanced","coef":3},
+                {"name":"Research Project I","coef":2}
+              ]
+            },
+            {
+              "name": "M2-S1",
+              "courses": [
+                {"name":"Cloud Systems & DevOps","coef":4},
+                {"name":"AI Systems","coef":3},
+                {"name":"Data Mining","coef":3},
+                {"name":"Thesis Work I","coef":3}
+              ]
+            },
+            {
+              "name": "M2-S2",
+              "courses": [
+                {"name":"Distributed Systems Advanced","coef":4},
+                {"name":"Cybersecurity Advanced","coef":3},
+                {"name":"Big Data","coef":3},
+                {"name":"Thesis Work II","coef":4}
+              ]
+            }
+          ]
+        }
+
+      ]
+    },
+
+    {
+      "name": "University of Algiers 1",
+      "specialties": [
+
+        {
+          "degree": "Licence",
+          "major": "Law",
+          "semesters": [
+            {
+              "name": "S1",
+              "courses": [
+                {"name":"Introduction to Law","coef":4},
+                {"name":"Constitutional Law I","coef":3},
+                {"name":"Legal Methodology I","coef":2},
+                {"name":"History of Legal Systems","coef":2},
+                {"name":"Islamic Law I","coef":2},
+                {"name":"English I","coef":1}
+              ]
+            },
+            {
+              "name": "S2",
+              "courses": [
+                {"name":"Civil Law I","coef":4},
+                {"name":"Constitutional Law II","coef":3},
+                {"name":"Administrative Law I","coef":2},
+                {"name":"Political Economy","coef":2},
+                {"name":"Legal Methodology II","coef":2},
+                {"name":"English II","coef":1}
+              ]
+            },
+            {
+              "name": "S3",
+              "courses": [
+                {"name":"Civil Law II","coef":4},
+                {"name":"Administrative Law II","coef":3},
+                {"name":"Commercial Law I","coef":3},
+                {"name":"Criminal Law I","coef":3},
+                {"name":"Legal Terminology","coef":2}
+              ]
+            },
+            {
+              "name": "S4",
+              "courses": [
+                {"name":"Commercial Law II","coef":4},
+                {"name":"Criminal Law II","coef":4},
+                {"name":"Civil Procedure","coef":3},
+                {"name":"Public Finance","coef":2},
+                {"name":"English III","coef":1}
+              ]
+            },
+            {
+              "name": "S5",
+              "courses": [
+                {"name":"Private International Law","coef":4},
+                {"name":"Labor Law","coef":3},
+                {"name":"Family Law","coef":3},
+                {"name":"Administrative Justice","coef":2},
+                {"name":"Legal Research Project","coef":2}
+              ]
+            },
+            {
+              "name": "S6",
+              "courses": [
+                {"name":"Public International Law","coef":4},
+                {"name":"Special Contracts","coef":4},
+                {"name":"Criminal Procedure","coef":3},
+                {"name":"Final Thesis","coef":5}
+              ]
+            }
+          ]
+        },
+
+        {
+          "degree": "Medicine",
+          "major": "Medicine",
+          "years": [
+            {
+              "name": "Year1",
+              "courses": [
+                {"name":"Biology","coef":4},
+                {"name":"General Chemistry","coef":4},
+                {"name":"Physics for Medicine","coef":3},
+                {"name":"Anatomy I","coef":4},
+                {"name":"Histology","coef":3}
+              ]
+            },
+            {
+              "name": "Year2",
+              "courses": [
+                {"name":"Physiology","coef":4},
+                {"name":"Biochemistry","coef":4},
+                {"name":"Microbiology","coef":3},
+                {"name":"Pathology I","coef":3}
+              ]
+            },
+            {
+              "name": "Year3",
+              "courses": [
+                {"name":"Pharmacology I","coef":4},
+                {"name":"Pathology II","coef":4},
+                {"name":"Medical Genetics","coef":3},
+                {"name":"Clinical Skills I","coef":3}
+              ]
+            },
+            {
+              "name": "Year4",
+              "courses": [
+                {"name":"Internal Medicine I","coef":4},
+                {"name":"Surgery I","coef":4},
+                {"name":"Pediatrics I","coef":3},
+                {"name":"OB/GYN I","coef":3}
+              ]
+            },
+            {
+              "name": "Year5",
+              "courses": [
+                {"name":"Internal Medicine II","coef":4},
+                {"name":"Surgery II","coef":4},
+                {"name":"Pediatrics II","coef":3},
+                {"name":"OB/GYN II","coef":3}
+              ]
+            },
+            {
+              "name": "Year6",
+              "courses": [
+                {"name":"Clinical Rotations","coef":8},
+                {"name":"Emergency Medicine","coef":4},
+                {"name":"Neurology","coef":3}
+              ]
+            },
+            {
+              "name": "Year7",
+              "courses": [
+                {"name":"Final Clinical Internship","coef":10}
+              ]
+            }
+          ]
+        },
+
+        {
+          "degree": "Pharmacy",
+          "major": "Pharmacy",
+          "years": [
+            {
+              "name":"Year1",
+              "courses":[
+                {"name":"Organic Chemistry","coef":4},
+                {"name":"Analytical Chemistry","coef":4},
+                {"name":"Botany","coef":3},
+                {"name":"Biology for Pharmacy","coef":3}
+              ]
+            },
+            {
+              "name":"Year2",
+              "courses":[
+                {"name":"Pharmacology I","coef":4},
+                {"name":"Physiology","coef":4},
+                {"name":"Pharmaceutical Chemistry I","coef":3},
+                {"name":"Microbiology for Pharmacy","coef":3}
+              ]
+            },
+            {
+              "name":"Year3",
+              "courses":[
+                {"name":"Pharmaceutical Technology","coef":4},
+                {"name":"Medicinal Chemistry","coef":4},
+                {"name":"Clinical Pharmacy","coef":3}
+              ]
+            },
+            {
+              "name":"Year4",
+              "courses":[
+                {"name":"Drug Formulation","coef":4},
+                {"name":"Toxicology","coef":4},
+                {"name":"Pharmacy Practice","coef":3}
+              ]
+            },
+            {
+              "name":"Year5",
+              "courses":[
+                {"name":"Advanced Pharmacotherapy","coef":5},
+                {"name":"Regulatory Affairs","coef":4},
+                {"name":"Internship","coef":6}
+              ]
+            },
+            {
+              "name":"Year6",
+              "courses":[
+                {"name":"Final Pharmacy Internship","coef":10}
+              ]
+            }
+          ]
+        }
+
+      ]
+    },
+
+    {
+      "name": "University of Setif 1",
+      "specialties": [
+
+        {
+          "degree": "Licence",
+          "major": "Economics",
+          "semesters": [
+            {
+              "name":"S1",
+              "courses":[
+                {"name":"Microeconomics I","coef":4},
+                {"name":"Mathematics for Economics I","coef":3},
+                {"name":"Statistics I","coef":3},
+                {"name":"Accounting I","coef":3},
+                {"name":"Introduction to Management","coef":2},
+                {"name":"English I","coef":1}
+              ]
+            },
+            {
+              "name":"S2",
+              "courses":[
+                {"name":"Macroeconomics I","coef":4},
+                {"name":"Statistics II","coef":3},
+                {"name":"Accounting II","coef":3},
+                {"name":"Economic History","coef":2},
+                {"name":"English II","coef":1}
+              ]
+            },
+            {
+              "name":"S3",
+              "courses":[
+                {"name":"Microeconomics II","coef":4},
+                {"name":"Macroeconomics II","coef":4},
+                {"name":"Econometrics I","coef":3},
+                {"name":"Public Finance","coef":2}
+              ]
+            },
+            {
+              "name":"S4",
+              "courses":[
+                {"name":"Econometrics II","coef":4},
+                {"name":"International Economics","coef":3},
+                {"name":"Money & Banking","coef":3},
+                {"name":"Economic Policy","coef":2}
+              ]
+            },
+            {
+              "name":"S5",
+              "courses":[
+                {"name":"Development Economics","coef":4},
+                {"name":"Industrial Economics","coef":3},
+                {"name":"Financial Markets","coef":3}
+              ]
+            },
+            {
+              "name":"S6",
+              "courses":[
+                {"name":"Thesis in Economics","coef":5},
+                {"name":"Advanced Econometrics","coef":3}
+              ]
+            }
+          ]
+        }
+
+      ]
+    },
+
+    {
+      "name": "University of Constantine",
+      "specialties": [
+
+        {
+          "degree": "Licence",
+          "major": "Physics",
+          "semesters": [
+            {
+              "name":"S1",
+              "courses":[
+                {"name":"Mathematics I","coef":4},
+                {"name":"Mechanics","coef":4},
+                {"name":"Thermodynamics","coef":3},
+                {"name":"Structure of Matter","coef":3},
+                {"name":"Physics Lab","coef":2}
+              ]
+            },
+            {
+              "name":"S2",
+              "courses":[
+                {"name":"Mathematics II","coef":4},
+                {"name":"Electromagnetism I","coef":4},
+                {"name":"Optics","coef":3},
+                {"name":"Physics Lab II","coef":2}
+              ]
+            },
+            {
+              "name":"S3",
+              "courses":[
+                {"name":"Quantum Physics I","coef":4},
+                {"name":"Electromagnetism II","coef":4},
+                {"name":"Mathematical Physics","coef":3}
+              ]
+            },
+            {
+              "name":"S4",
+              "courses":[
+                {"name":"Quantum Physics II","coef":4},
+                {"name":"Statistical Physics","coef":3},
+                {"name":"Solid State Physics","coef":3}
+              ]
+            },
+            {
+              "name":"S5",
+              "courses":[
+                {"name":"Nuclear Physics","coef":4},
+                {"name":"Advanced Quantum Mechanics","coef":3}
+              ]
+            },
+            {
+              "name":"S6",
+              "courses":[
+                {"name":"Physics Project","coef":5}
+              ]
+            }
+          ]
+        }
+
+      ]
+    },
+
+    {
+      "name": "Emir Abdelkader University Constantine",
+      "specialties": [
+
+        {
+          "degree": "Licence",
+          "major": "Islamic Sciences",
+          "semesters": [
+            {
+              "name":"S1",
+              "courses":[
+                {"name":"Quranic Studies","coef":4},
+                {"name":"Hadith Studies","coef":4},
+                {"name":"Fiqh I","coef":3},
+                {"name":"Arabic Grammar","coef":3},
+                {"name":"Islamic History","coef":2}
+              ]
+            },
+            {
+              "name":"S2",
+              "courses":[
+                {"name":"Tafsir","coef":4},
+                {"name":"Usul al-Fiqh","coef":4},
+                {"name":"Fiqh II","coef":3},
+                {"name":"Arabic Rhetoric","coef":2}
+              ]
+            },
+            {
+              "name":"S3",
+              "courses":[
+                {"name":"Hadith Methodology","coef":4},
+                {"name":"Islamic Theology","coef":4},
+                {"name":"Comparative Fiqh","coef":3}
+              ]
+            },
+            {
+              "name":"S4",
+              "courses":[
+                {"name":"Quran Sciences","coef":4},
+                {"name":"Islamic Civilization","coef":3}
+              ]
+            },
+            {
+              "name":"S5",
+              "courses":[
+                {"name":"Contemporary Islamic Issues","coef":4}
+              ]
+            },
+            {
+              "name":"S6",
+              "courses":[
+                {"name":"Graduation Thesis","coef":5}
+              ]
+            }
+          ]
+        }
+
+      ]
+    }
+
+  ]
+                }
