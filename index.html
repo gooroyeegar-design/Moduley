@@ -3,152 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moduley | Algerian University Guide</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Moduley | Smart Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text-main: #1e293b;
-            --text-sub: #64748b;
+            --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --text-sub: #64748b;
+            --primary: #4f46e5; --border: #e2e8f0; --input-bg: #f1f5f9; --accent: #10b981;
+        }
+        [data-theme="dark"] {
+            --bg: #020617; --card: #1e293b; --text: #f1f5f9; --text-sub: #94a3b8;
+            --primary: #818cf8; --border: #334155; --input-bg: #0f172a;
         }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; transition: 0.3s; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        header { width: 100%; max-width: 500px; padding: 25px 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        
+        #app { width: 100%; max-width: 500px; padding: 0 15px 100px 15px; box-sizing: border-box; }
+        
+        .card { background: var(--card); border-radius: 24px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid var(--border); transition: transform 0.2s; }
+        
+        .btn { border: none; padding: 12px 18px; border-radius: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: var(--primary); color: white; width: 100%; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+        .btn-outline { background: var(--card); border: 1px solid var(--border); color: var(--text); font-size: 0.85rem; }
+        .btn-add { background: var(--input-bg); color: var(--primary); margin-top: 15px; width: 100%; font-size: 0.85rem; border: 1px dashed var(--primary); }
+        .btn-remove { background: #fee2e2; color: #dc2626; width: 32px; height: 32px; border-radius: 8px; padding: 0; }
 
-        header {
-            background: #1e293b;
-            color: white;
-            width: 100%;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        header h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.5px; }
-
-        #app {
-            width: 100%;
-            max-width: 500px;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-
-        .univ-section { margin-top: 20px; }
-        .univ-name { 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            color: var(--text-sub); 
-            font-weight: 700;
-            margin-bottom: 10px;
-            padding-left: 5px;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-
-        .major-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
-        .degree-badge { 
-            display: inline-block;
-            font-size: 0.7rem;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .period-group { border-top: 1px solid #f1f5f9; padding-top: 12px; margin-top: 12px; }
-        .period-name { font-weight: 600; font-size: 0.9rem; color: #334155; display: block; margin-bottom: 8px; }
-
-        .course-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            padding: 4px 0;
-            border-bottom: 1px dashed #f1f5f9;
-        }
-        .course-row:last-child { border-bottom: none; }
-        .coef-tag { color: var(--text-sub); font-weight: 500; }
-
-        .loading { text-align: center; margin-top: 50px; color: var(--text-sub); }
+        .module-row { display: grid; grid-template-columns: 1fr 50px 70px 32px; gap: 10px; align-items: center; margin-bottom: 12px; }
+        input { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 12px; width: 100%; box-sizing: border-box; font-size: 0.9rem; outline: none; transition: border 0.2s; }
+        input:focus { border-color: var(--primary); }
+        
+        .avg-container { background: linear-gradient(135deg, var(--primary), #9333ea); color: white; border-radius: 18px; padding: 18px; margin-top: 20px; text-align: center; }
+        .avg-value { font-size: 2.2rem; font-weight: 800; }
+        
+        .section-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--text-sub); margin: 40px 0 15px 5px; letter-spacing: 1px; }
+        .status-pill { font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; margin-top: 5px; display: inline-block; background: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Moduley</h1>
+        <div>
+            <h1 style="margin:0; font-weight:800; font-size: 1.6rem; color: var(--primary);">Moduley.</h1>
+            <p style="margin:0; font-size: 0.75rem; color: var(--text-sub);">Local Save Enabled 💾</p>
+        </div>
+        <button class="btn btn-outline" onclick="toggleTheme()" id="themeBtn">🌙</button>
     </header>
 
     <div id="app">
-        <div class="loading">Loading your curriculum...</div>
+        <button class="btn btn-primary" onclick="addCustomSemester()">+ Create Custom Calculator</button>
+        
+        <div id="custom-area"></div>
+        <div class="section-label">University Programs</div>
+        <div id="json-area"></div>
     </div>
 
     <script>
-        async function loadModules() {
-            const appDiv = document.getElementById('app');
-            try {
-                const response = await fetch('data.json');
-                const data = await response.json();
-                
-                let html = '';
+        // --- Core Logic ---
+        function toggleTheme() {
+            const body = document.documentElement;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeBtn').innerText = isDark ? '🌙' : '☀️';
+        }
 
-                data.universities.forEach(univ => {
-                    html += `<div class="univ-section">
-                                <div class="univ-name">${univ.name}</div>`;
-                    
-                    univ.specialties.forEach(spec => {
-                        html += `
-                            <div class="card">
-                                <div class="major-title">${spec.major}</div>
-                                <div class="degree-badge">${spec.degree}</div>
-                        `;
+        // Initialize Theme
+        if(localStorage.getItem('theme') === 'dark') toggleTheme();
 
-                        const periods = spec.semesters || spec.years;
-                        
-                        periods.forEach(p => {
-                            html += `<div class="period-group">
-                                        <span class="period-name">${p.name}</span>`;
-                            p.courses.forEach(c => {
-                                html += `
-                                    <div class="course-row">
-                                        <span>${c.name}</span>
-                                        <span class="coef-tag">×${c.coef}</span>
-                                    </div>`;
-                            });
-                            html += `</div>`;
-                        });
-                        html += `</div>`;
-                    });
-                    html += `</div>`;
-                });
-
-                appDiv.innerHTML = html;
-            } catch (e) {
-                appDiv.innerHTML = `<div class="loading">❌ Error loading data. check your data.json file!</div>`;
+        function addCustomSemester(data = null) {
+            const id = data?.id || `custom-${Date.now()}`;
+            const html = `
+                <div class="card" id="${id}">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <input type="text" value="${data?.title || 'My Semester'}" class="sem-title" style="font-weight:800; border:none; background:none; font-size:1.2rem; width:80%; padding:0;" oninput="saveAll()">
+                        <button class="btn btn-remove" onclick="if(confirm('Delete?')){document.getElementById('${id}').remove(); saveAll();}">✕</button>
+                    </div>
+                    <div id="list-${id}"></div>
+                    <button class="btn btn-add" onclick="addRow('${id}')">+ Add New Module</button>
+                    <div class="avg-container">
+                        <div class="avg-value" id="avg-${id}">0.00</div>
+                        <div class="status-pill" id="status-${id}">NO DATA</div>
+                    </div>
+                </div>`;
+            document.getElementById('custom-area').insertAdjacentHTML('afterbegin', html);
+            
+            if(data?.modules) {
+                data.modules.forEach(m => addRow(id, m));
+            } else {
+                addRow(id); // Start with one empty row
             }
         }
 
-        loadModules();
+        function addRow(id, mData = null) {
+            const row = document.createElement('div');
+            row.className = 'module-row';
+            row.innerHTML = `
+                <input type="text" placeholder="Module" class="m-name" value="${mData?.name || ''}" oninput="saveAll()">
+                <input type="number" placeholder="C" class="m-coef" value="${mData?.coef || ''}" oninput="calc('${id}')">
+                <input type="number" placeholder="G" class="m-grade" value="${mData?.grade || ''}" oninput="calc('${id}')">
+                <button class="btn btn-remove" onclick="this.parentElement.remove(); calc('${id}')" style="background:none; color:var(--text-sub)">✕</button>`;
+            document.getElementById(`list-${id}`).appendChild(row);
+            calc(id);
+        }
+
+        async function loadJSON() {
+            const res = await fetch('data.json');
+            const data = await res.json();
+            const area = document.getElementById('json-area');
+            const saved = JSON.parse(localStorage.getItem('savedGrades') || '{}');
+            
+            data.universities.forEach((univ, uIdx) => {
+                univ.specialties.forEach((spec, sIdx) => {
+                    const pid = `j-${uIdx}-${sIdx}`;
+                    let content = `<div class="card">
+                        <span style="font-size:0.65rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${univ.name}</span>
+                        <div style="font-weight:800; margin-bottom:20px; font-size:1.1rem;">${spec.major}</div>`;
+                    
+                    const periods = spec.semesters || spec.years;
+                    periods.forEach((p, pIdx) => {
+                        const gid = `${pid}-${pIdx}`;
+                        content += `<div style="margin-top:20px; border-top:1px solid var(--border); padding-top:15px;">
+                            <span style="font-size:0.85rem; font-weight:700; display:block; margin-bottom:12px; color:var(--text-sub)">${p.name}</span>
+                            <div id="list-${gid}">`;
+                        
+                        p.courses.forEach((c, cIdx) => {
+                            const savedVal = saved[`${gid}-${cIdx}`] || '';
+                            content += `<div class="module-row">
+                                <span style="font-size:0.85rem; font-weight:500;">${c.name}</span>
+                                <input type="number" value="${c.coef}" class="m-coef" oninput="calc('${gid}')">
+                                <input type="number" placeholder="Grade" class="m-grade" value="${savedVal}" oninput="calc('${gid}')">
+                                <span></span>
+                            </div>`;
+                        });
+                        content += `</div><div class="avg-container"><div class="avg-value" id="avg-${gid}">0.00</div><div class="status-pill" id="status-${gid}"></div></div></div>`;
+                    });
+                    content += `</div>`;
+                    area.insertAdjacentHTML('beforeend', content);
+                    periods.forEach((p, pIdx) => calc(`${pid}-${pIdx}`));
+                });
+            });
+        }
+
+        function calc(id) {
+            const card = document.getElementById(`list-${id}`);
+            if(!card) return;
+            const coefs = card.querySelectorAll('.m-coef');
+            const grades = card.querySelectorAll('.m-grade');
+            let p = 0, c = 0;
+            for(let i=0; i<coefs.length; i++) {
+                const grade = parseFloat(grades[i].value);
+                const coef = parseFloat(coefs[i].value);
+                if(!isNaN(grade) && !isNaN(coef)) {
+                    p += (grade * coef);
+                    c += coef;
+                }
+            }
+            const avg = c > 0 ? (p/c).toFixed(2) : "0.00";
+            document.getElementById(`avg-${id}`).innerText = avg;
+            
+            const status = document.getElementById(`status-${id}`);
+            if(avg >= 10) status.innerText = "PASSED ✅";
+            else if(avg > 0) status.innerText = "RETAKE 📚";
+            else status.innerText = "NO DATA";
+            
+            saveAll();
+        }
+
+        function saveAll() {
+            // Save JSON grades
+            const jsonGrades = {};
+            document.querySelectorAll('#json-area .m-grade').forEach((input, idx) => {
+                const gid = input.closest('[id^="list-"]').id.replace('list-','');
+                const rowIdx = Array.from(input.closest('[id^="list-"]').children).indexOf(input.parentElement);
+                jsonGrades[`${gid}-${rowIdx}`] = input.value;
+            });
+            localStorage.setItem('savedGrades', JSON.stringify(jsonGrades));
+
+            // Save Custom Calculators
+            const customData = [];
+            document.querySelectorAll('#custom-area .card').forEach(card => {
+                const modules = [];
+                card.querySelectorAll('.module-row').forEach(row => {
+                    modules.push({
+                        name: row.querySelector('.m-name').value,
+                        coef: row.querySelector('.m-coef').value,
+                        grade: row.querySelector('.m-grade').value
+                    });
+                });
+                customData.push({
+                    id: card.id,
+                    title: card.querySelector('.sem-title').value,
+                    modules: modules
+                });
+            });
+            localStorage.setItem('customCalculators', JSON.stringify(customData));
+        }
+
+        // Initial Load
+        window.onload = () => {
+            const savedCustom = JSON.parse(localStorage.getItem('customCalculators') || '[]');
+            savedCustom.forEach(data => addCustomSemester(data));
+            loadJSON();
+        };
     </script>
 </body>
 </html>
