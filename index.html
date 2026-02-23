@@ -3,55 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moduley - Curriculum</title>
+    <title>Moduley | Algerian University Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; padding: 20px; line-height: 1.6; color: #333; }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .univ-card { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-        .specialty { margin-left: 20px; color: #0066cc; }
-        .course-list { font-size: 0.9em; list-style: none; }
-        .coef { font-weight: bold; color: #666; }
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background: #1e293b;
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.5px; }
+
+        #app {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .univ-section { margin-top: 20px; }
+        .univ-name { 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            color: var(--text-sub); 
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .major-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+        .degree-badge { 
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .period-group { border-top: 1px solid #f1f5f9; padding-top: 12px; margin-top: 12px; }
+        .period-name { font-weight: 600; font-size: 0.9rem; color: #334155; display: block; margin-bottom: 8px; }
+
+        .course-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 4px 0;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+        .course-row:last-child { border-bottom: none; }
+        .coef-tag { color: var(--text-sub); font-weight: 500; }
+
+        .loading { text-align: center; margin-top: 50px; color: var(--text-sub); }
     </style>
 </head>
 <body>
 
-    <h1>Moduley</h1>
-    <div id="app">Loading curriculum data...</div>
+    <header>
+        <h1>Moduley</h1>
+    </header>
+
+    <div id="app">
+        <div class="loading">Loading your curriculum...</div>
+    </div>
 
     <script>
-        // This script reads your data.json file
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                const app = document.getElementById('app');
+        async function loadModules() {
+            const appDiv = document.getElementById('app');
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
                 let html = '';
 
                 data.universities.forEach(univ => {
-                    html += `<div class="univ-card"><h2>🏛️ ${univ.name}</h2>`;
+                    html += `<div class="univ-section">
+                                <div class="univ-name">${univ.name}</div>`;
                     
                     univ.specialties.forEach(spec => {
-                        html += `<div class="specialty"><h3>${spec.degree}: ${spec.major}</h3></div>`;
-                        
-                        // Check if it uses Semesters or Years
+                        html += `
+                            <div class="card">
+                                <div class="major-title">${spec.major}</div>
+                                <div class="degree-badge">${spec.degree}</div>
+                        `;
+
                         const periods = spec.semesters || spec.years;
                         
-                        periods.forEach(period => {
-                            html += `<strong>${period.name}</strong><ul class="course-list">`;
-                            period.courses.forEach(course => {
-                                html += `<li>${course.name} <span class="coef">(Coef: ${course.coef})</span></li>`;
+                        periods.forEach(p => {
+                            html += `<div class="period-group">
+                                        <span class="period-name">${p.name}</span>`;
+                            p.courses.forEach(c => {
+                                html += `
+                                    <div class="course-row">
+                                        <span>${c.name}</span>
+                                        <span class="coef-tag">×${c.coef}</span>
+                                    </div>`;
                             });
-                            html += `</ul>`;
+                            html += `</div>`;
                         });
+                        html += `</div>`;
                     });
                     html += `</div>`;
                 });
 
-                app.innerHTML = html;
-            })
-            .catch(err => {
-                app.innerHTML = "Error loading data. Make sure data.json is in the same folder!";
-                console.error(err);
-            });
+                appDiv.innerHTML = html;
+            } catch (e) {
+                appDiv.innerHTML = `<div class="loading">❌ Error loading data. check your data.json file!</div>`;
+            }
+        }
+
+        loadModules();
     </script>
 </body>
 </html>
