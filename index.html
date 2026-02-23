@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moduley - Curriculum</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; color: #333; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .univ-card { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .specialty { margin-left: 20px; color: #0066cc; }
+        .course-list { font-size: 0.9em; list-style: none; }
+        .coef { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+    <h1>Moduley</h1>
+    <div id="app">Loading curriculum data...</div>
+
+    <script>
+        // This script reads your data.json file
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const app = document.getElementById('app');
+                let html = '';
+
+                data.universities.forEach(univ => {
+                    html += `<div class="univ-card"><h2>🏛️ ${univ.name}</h2>`;
+                    
+                    univ.specialties.forEach(spec => {
+                        html += `<div class="specialty"><h3>${spec.degree}: ${spec.major}</h3></div>`;
+                        
+                        // Check if it uses Semesters or Years
+                        const periods = spec.semesters || spec.years;
+                        
+                        periods.forEach(period => {
+                            html += `<strong>${period.name}</strong><ul class="course-list">`;
+                            period.courses.forEach(course => {
+                                html += `<li>${course.name} <span class="coef">(Coef: ${course.coef})</span></li>`;
+                            });
+                            html += `</ul>`;
+                        });
+                    });
+                    html += `</div>`;
+                });
+
+                app.innerHTML = html;
+            })
+            .catch(err => {
+                app.innerHTML = "Error loading data. Make sure data.json is in the same folder!";
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
